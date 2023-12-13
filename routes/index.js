@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/login", function (req, res) {
-  res.render("login", { footer: false });
+  res.render("login", { footer: false , error: req.flash("error")});
 });
 
 router.get("/feed", isLoggedIn, async function (req, res) {
@@ -25,11 +25,12 @@ router.get("/profile", isLoggedIn, async function (req, res) {
   const user = await userModel
     .findOne({ username: req.session.passport.user })
     .populate("posts");
-  res.render("profile", { footer: true, user });
+  res.render("profile", { footer: true, user});
 });
 
-router.get("/search", function (req, res) {
-  res.render("search", { footer: true });
+router.get("/search", async function (req, res) {
+  const user = await userModel.findOne({username: req.session.passport.user});
+  res.render("search", { footer: true , user});
 });
 
 router.get("/username/:username", isLoggedIn, async function (req, res) {
@@ -56,8 +57,9 @@ router.get("/like/post/:id", isLoggedIn, async function (req, res) {
   res.redirect("/feed");
 });
 
-router.get("/upload", isLoggedIn, function (req, res) {
-  res.render("upload", { footer: true });
+router.get("/upload", isLoggedIn, async function (req, res) {
+  const user = await userModel.findOne({ username: req.session.passport.user });
+  res.render("upload", { footer: true , user });
 });
 
 router.get("/logout", function (req, res, next) {
@@ -87,6 +89,7 @@ router.post(
   passport.authenticate("local", {
     failureRedirect: "/login",
     successRedirect: "/profile",
+    failureFlash: true
   }),
   function (req, res, next) {}
 );
