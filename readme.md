@@ -3,10 +3,13 @@
 #Features
 
 login & register page
+<br>
 feed page
+<br>
 profile page
-picture
-story feature
-edit details
-share to story
+<br>
+picture<br>
+story feature<br>
+edit details<br>
+share to story<br>
 search accounts
