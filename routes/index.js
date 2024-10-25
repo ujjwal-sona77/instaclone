@@ -9,7 +9,9 @@ passport.use(new localStrategy(userModel.authenticate()));
 
 router.get("/", function (req, res) {
   res.render("index", { footer: false });
-});
+});  
+
+// PORT NO 5500 Localhost
 
 router.get("/login", function (req, res) {
   res.render("login", { footer: false , error: req.flash("error")});
@@ -102,7 +104,7 @@ router.post("/update", upload.single("image"), async function (req, res, next) {
   );
   if (req.file) {
     user.profileImage = req.file.filename;
-  }
+  } 
   await user.save();
   res.redirect("/profile");
 });
