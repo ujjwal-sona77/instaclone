@@ -92,11 +92,17 @@
     <div class="post mt-5 w-full min-h-[50vh]">
       <div class="title px-4 flex items-center gap-2">
         <div class="w-[8vw] h-[8vw] bg-sky-100 rounded-full overflow-hidden">
-          <img
-            class="w-full h-full object-cover"
-            src="data:image/jpeg;base64,<%= elem.user.profileImage.toString('base64') %>"
-            alt=""
-          />
+          <% if (elem.user.profileImage) { %>
+            <img
+              class="w-full h-full object-cover"
+              src="data:image/jpeg;base64,<%= elem.user.profileImage.toString('base64') %>"
+              alt=""
+            />
+          <% } else { %>
+            <div class="w-full h-full flex items-center justify-center bg-zinc-800 text-4xl uppercase">
+              <%= elem.user.username.charAt(0) %>
+            </div>
+          <% } %>
         </div>
         <h4 class="text-sm"><%= elem.user.username %></h4>
         <h6 class="text-xs opacity-30">1d</h6>

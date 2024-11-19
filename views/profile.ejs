@@ -11,11 +11,17 @@
     <div
       class="w-[19vw] h-[19vw] bg-sky-100 rounded-full overflow-hidden object-cover object-center"
     >
-      <img
-        class="w-full h-full object-cover"
-        src="data:image/jpeg;base64,<%= user.profileImage.toString('base64') %>"
-        alt=""
-      />
+      <% if (user.profileImage) { %>
+        <img
+          class="w-full h-full object-cover"
+          src="data:image/jpeg;base64,<%= user.profileImage.toString('base64') %>"
+          alt=""
+        />
+      <% } else { %>
+        <div class="w-full h-full flex items-center justify-center bg-zinc-800 text-4xl uppercase">
+          <%= user.username.charAt(0) %>
+        </div>
+      <% } %>
     </div>
     <div class="stats flex gap-5 items-center justify-between">
       <div class="flex flex-col items-center justify-center">
