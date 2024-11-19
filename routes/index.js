@@ -103,7 +103,7 @@ router.post("/update", upload.single("image"), async function (req, res, next) {
     { new: true }
   );
   if (req.file) {
-    user.profileImage = req.file.filename;
+    user.profileImage = req.file.buffer;
   } 
   await user.save();
   res.redirect("/profile");
@@ -118,7 +118,7 @@ router.post(
       username: req.session.passport.user,
     });
     const post = await postModel.create({
-      picture: req.file.filename,
+      picture: req.file.buffer,
       user: user._id,
       caption: req.body.caption,
     });

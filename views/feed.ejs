@@ -94,7 +94,7 @@
         <div class="w-[8vw] h-[8vw] bg-sky-100 rounded-full overflow-hidden">
           <img
             class="w-full h-full object-cover"
-            src="/images/uploads/<%= elem.user.profileImage %>"
+            src="data:image/jpeg;base64,<%= elem.user.profileImage.toString('base64') %>"
             alt=""
           />
         </div>
@@ -104,9 +104,10 @@
       <div class="w-full h-96 mt-4 bg-sky-100 overflow-hidden">
         <img
           class="h-full w-full object-cover"
-          src="/images/uploads/<%= elem.picture %>"
+          src="data:image/jpeg;base64,<%= elem.picture.toString('base64') %>"
           alt=""
         />
+
       </div>
       <div
         class="options w-full px-4 flex justify-between items-center text-[1.4rem]"
